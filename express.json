@@ -1,7 +1,7 @@
 {
   "aiostreams": {
     "name": "AioStreams",
-    "base_url": "https://aiostreamsfortheweebsstable.midnightignite.me",
+    "base_url": "https://aiostreams.yourdomain.com",
     "response_type": "json",
     "movie": {
       "query": "/stremio/{managedAccounts.aio.username}/{managedAccounts.aio.password}/stream/movie/{query}.json",
@@ -24,7 +24,7 @@
       "host:ops": [
         {
           "name": "regex",
-          "params": ["http(?:s|)://(.+)\\/"]
+          "params": ["http(?:s|)://(.+)\/"]
         }
       ],
       "playbackFileName": "behaviorHints.filename",
