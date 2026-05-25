@@ -1,0 +1,22 @@
+{
+  "name": "AioStreams - Vendor",
+  "description": "AioStreams express package for Syncler",
+  "website": "https://github.com/Cxsmo-ai/syncler-aiostreams",
+  "tutorial": "https://cxsmo-ai.github.io/syncler-aiostreams/@config/?id=vendor",
+  "support": "https://github.com/Cxsmo-ai/syncler-aiostreams/issues",
+  "packages": [
+    {
+      "manifest": "https://cxsmo-ai.github.io/syncler-aiostreams/manifest.json",
+      "description": "AioStreams express package"
+    }
+  ],
+  "defaults": {
+    "packages": [
+      "https://cxsmo-ai.github.io/syncler-aiostreams/manifest.json"
+    ],
+    "cacheServer": "cache.bouncy.cc"
+  },
+  "cacheServers": [
+    "cache.bouncy.cc"
+  ]
+}

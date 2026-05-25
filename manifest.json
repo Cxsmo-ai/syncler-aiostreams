@@ -1,0 +1,32 @@
+{
+  "name": "AioStreams",
+  "id": "com.aiostreams.syncler",
+  "version": 1779671402,
+  "classPath": "",
+  "type": "express",
+  "accounts": [
+    {
+      "alias": "aio",
+      "branding": {
+        "name": "AioStreams (ELF)",
+        "website": "https://aiostreamsfortheweebsstable.midnightignite.me",
+        "logo": "https://aiostreamsfortheweebsstable.midnightignite.me/logo.png"
+      },
+      "auth": {
+        "type": "basic"
+      },
+      "verification": {
+        "url": "https://aiostreamsfortheweebsstable.midnightignite.me/stremio/{managedAccounts.aio.username}/{managedAccounts.aio.password}/manifest.json",
+        "method": "GET",
+        "responseType": "json",
+        "extract": {
+          "username": {
+            "type": "jsonpath",
+            "value": "$.id"
+          }
+        }
+      }
+    }
+  ],
+  "url": "https://cxsmo-ai.github.io/syncler-aiostreams/express.json"
+}
