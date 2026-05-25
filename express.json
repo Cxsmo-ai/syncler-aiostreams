@@ -1,7 +1,7 @@
 {
   "aiostreams": {
     "name": "AioStreams",
-    "base_url": "https://aiostreams.yourdomain.com",
+    "base_url": "https://aiostreamsfortheweebsstable.midnightignite.me",
     "response_type": "json",
     "movie": {
       "query": "/stremio/{managedAccounts.aio.username}/{managedAccounts.aio.password}/stream/movie/{query}.json",
