@@ -19,12 +19,6 @@
       "results": "streams",
       "url": "url",
       "title": "description",
-      "title:ops": [
-        {
-          "name": "regex",
-          "params": ["(.+?)\\n"]
-        }
-      ],
       "size": "behaviorHints.videoSize",
       "host": "url",
       "host:ops": [
