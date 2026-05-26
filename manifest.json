@@ -1,5 +1,11 @@
-accounts: [
- {
+{
+  "name": "AioStreams",
+  "id": "com.cxsmo.aiostreams",
+  "version": 1,
+  "url": "https://cxsmo-ai.github.io/syncler-aiostreams/express.json",
+  "type": "express",
+  "accounts": [
+    {
       "alias": "aio",
 
       "branding": {
@@ -25,5 +31,5 @@ accounts: [
         }
       }
     }
-]
+  ]
 }

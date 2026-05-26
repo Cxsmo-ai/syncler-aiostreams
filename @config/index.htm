@@ -25,7 +25,21 @@
       <p><a class="c-package-link btn btn-secondary" :href="manifestUrl">{{ manifestUrl }}</a></p>
       <button class="btn btn-outline-light" type="button" @click="copy(manifestUrl)">Copy Package Manifest URL</button>
     </div>
-    <p class="text-muted">You need an AioStreams account configured in Syncler for this provider.</p>
+    <div class="mb-5 border-bottom pb-5">
+      <h3 class="h5 mb-4 text-decoration-underline">Express Package URL</h3>
+      <p><a class="c-package-link btn btn-secondary" :href="packageUrl">{{ packageUrl }}</a></p>
+      <button class="btn btn-outline-light" type="button" @click="copy(packageUrl)">Copy Express Package URL</button>
+    </div>
+    <div class="mb-5">
+      <h3 class="h5 mb-4 text-decoration-underline">Setup Instructions</h3>
+      <ol>
+        <li>Open Syncler and go to <strong>Provider packages</strong>.</li>
+        <li>Add the <strong>Vendor URL</strong> above as a new vendor.</li>
+        <li>Go to <strong>Accounts</strong> and add your AioStreams credentials (username &amp; password from your AioStreams instance).</li>
+        <li>The package will verify your credentials and start providing streams.</li>
+      </ol>
+      <p class="text-muted">Your AioStreams instance: <a href="https://aiostreamsfortheweebsstable.midnightignite.me">aiostreamsfortheweebsstable.midnightignite.me</a></p>
+    </div>
   </div>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/3.4.15/vue.global.prod.min.js"></script>
