@@ -7,19 +7,19 @@ Syncler vendor copied from JakedUp's repo layout and switched to the AioStreams 
 Use this Syncler v2 vendor URL:
 
 ```
-https://cxsmo-ai.github.io/syncler-aiostreams/vendor.json
+https://raw.githubusercontent.com/Cxsmo-ai/syncler-aiostreams/refs/heads/main/vendor.json
 ```
 
 The vendor points Syncler to this package manifest:
 
 ```
-https://cxsmo-ai.github.io/syncler-aiostreams/manifest.json
+https://raw.githubusercontent.com/Cxsmo-ai/syncler-aiostreams/refs/heads/main/manifest.json
 ```
 
 The package manifest points Syncler to this package data:
 
 ```
-https://cxsmo-ai.github.io/syncler-aiostreams/express.json
+https://raw.githubusercontent.com/Cxsmo-ai/syncler-aiostreams/refs/heads/main/express.json
 ```
 
 You need an AioStreams account in Syncler because the package uses the `managedAccounts.aio` username/password placeholders.

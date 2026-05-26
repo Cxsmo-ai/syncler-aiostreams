@@ -6,13 +6,13 @@
   "support": "https://github.com/Cxsmo-ai/syncler-aiostreams/issues",
   "packages": [
     {
-      "manifest": "https://cxsmo-ai.github.io/syncler-aiostreams/manifest.json",
+      "manifest": "https://raw.githubusercontent.com/Cxsmo-ai/syncler-aiostreams/refs/heads/main/manifest.json",
       "description": "AioStreams express package"
     }
   ],
   "defaults": {
     "packages": [
-      "https://cxsmo-ai.github.io/syncler-aiostreams/manifest.json"
+      "https://raw.githubusercontent.com/Cxsmo-ai/syncler-aiostreams/refs/heads/main/manifest.json"
     ],
     "cacheServer": "cache.bouncy.cc"
   },
