@@ -22,7 +22,6 @@
     "json_format": {
       "results": "streams",
       "url": "url",
-      "hash": "infoHash",
       "title": "description",
       "size": "behaviorHints.videoSize",
       "host": "url",
