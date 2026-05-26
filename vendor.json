@@ -6,13 +6,13 @@
   "support": "https://github.com/Cxsmo-ai/syncler-aiostreams/issues",
   "packages": [
     {
-      "manifest": "https://raw.githubusercontent.com/Cxsmo-ai/syncler-aiostreams/refs/heads/main/manifest.json",
+      "manifest": "https://cxsmo-ai.github.io/syncler-aiostreams/manifest.json",
       "description": "Easynews express package"
     }
   ],
   "defaults": {
     "packages": [
-      "https://raw.githubusercontent.com/Cxsmo-ai/syncler-aiostreams/refs/heads/main/manifest.json"
+      "https://cxsmo-ai.github.io/syncler-aiostreams/manifest.json"
     ],
     "cacheServer": "cache.bouncy.cc"
   },
