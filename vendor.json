@@ -7,7 +7,7 @@
   "packages": [
     {
       "manifest": "https://cxsmo-ai.github.io/syncler-aiostreams/manifest.json",
-      "description": "Easynews express package"
+      "description": "AioStreams express package"
     }
   ],
   "defaults": {
