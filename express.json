@@ -8,23 +8,32 @@
     "base_url": "https://aiostreamsfortheweebsstable.midnightignite.me",
     "response_type": "json",
     "movie": {
-      "query": "/api/v1/search?type=movie&id={query}&format=true",
+      "query": "/api/v1/search?type=movie&id={query}&format=true&requiredFields=url",
       "keywords": "{imdbId}"
     },
     "episode": {
-      "query": "/api/v1/search?type=series&id={query}:{season}:{episode}&format=true",
+      "query": "/api/v1/search?type=series&id={query}:{season}:{episode}&format=true&requiredFields=url",
       "keywords": "{showImdbId}"
     },
     "anime": {
-      "query": "/api/v1/search?type=series&id={query}:{season}:{episode}&format=true",
+      "query": "/api/v1/search?type=series&id={query}:{season}:{episode}&format=true&requiredFields=url",
       "keywords": "{showImdbId}"
     },
     "json_format": {
       "results": "data.results",
-      "hash": "infoHash",
+      "url": "url",
       "title": "name",
       "seeds": "seeders",
       "size": "size",
+      "host": "url",
+      "host:ops": [
+        {
+          "name": "regex",
+          "params": [
+            "https?://([^/]+)"
+          ]
+        }
+      ],
       "playbackFileName": "filename",
       "playbackFileSize": "size"
     }

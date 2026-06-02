@@ -1,7 +1,7 @@
 {
   "name": "AIOStreams",
   "id": "com.cxsmo.syncler.aiostreams",
-  "version": 1780439700,
+  "version": 1780440300,
   "classPath": "",
   "url": "https://raw.githubusercontent.com/Cxsmo-ai/syncler-aiostreams/refs/heads/main/express.json",
   "type": "express",
