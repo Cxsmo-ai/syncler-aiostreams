@@ -1,7 +1,7 @@
 {
   "name": "AIOStreams",
   "id": "com.cxsmo.syncler.aiostreams",
-  "version": 1780438200,
+  "version": 1780439000,
   "classPath": "",
   "url": "https://raw.githubusercontent.com/Cxsmo-ai/syncler-aiostreams/refs/heads/main/express.json",
   "type": "express",
@@ -10,7 +10,7 @@
       "alias": "aio",
       "branding": {
         "name": "AIOStreams",
-        "website": "https://aiostreamsfortheweebsstable.midnightignite.me",
+        "website": "https://midnightignite.me",
         "logo": "https://aiostreamsfortheweebsstable.midnightignite.me/logo.png"
       },
       "auth": {
