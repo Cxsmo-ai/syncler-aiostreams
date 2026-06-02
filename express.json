@@ -21,20 +21,10 @@
     },
     "json_format": {
       "results": "data.results",
-      "url": "url",
       "hash": "infoHash",
       "title": "name",
       "seeds": "seeders",
       "size": "size",
-      "host": "url",
-      "host:ops": [
-        {
-          "name": "regex",
-          "params": [
-            "https?://([^/]+)"
-          ]
-        }
-      ],
       "playbackFileName": "filename",
       "playbackFileSize": "size"
     }
