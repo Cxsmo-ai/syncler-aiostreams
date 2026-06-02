@@ -1,29 +1,39 @@
-accounts: [
- {
+{
+  "name": "AIOStreams",
+  "id": "com.cxsmo.syncler.aiostreams",
+  "version": 1,
+  "url": "https://cxsmo-ai.github.io/syncler-aiostreams/express.json",
+  "type": "express",
+  "accounts": [
+    {
       "alias": "aio",
-
       "branding": {
-        "name": "AioStreams (ELF)",
+        "name": "AIOStreams",
         "website": "https://aiostreamsfortheweebsstable.midnightignite.me",
         "logo": "https://aiostreamsfortheweebsstable.midnightignite.me/logo.png"
       },
-
       "auth": {
-        "type": "basic"
+        "type": "basic",
+        "allowedDomains": [
+          "midnightignite.me"
+        ],
+        "inject": {
+          "headers": {
+            "Authorization": "Basic {managedAccounts.aio.basicToken}"
+          }
+        }
       },
-
       "verification": {
-        "url": "https://aiostreamsfortheweebsstable.midnightignite.me/stremio/{managedAccounts.aio.username}/{managedAccounts.aio.password}/manifest.json",
+        "url": "https://aiostreamsfortheweebsstable.midnightignite.me/api/v1/user",
         "method": "GET",
         "responseType": "json",
-
         "extract": {
           "username": {
             "type": "jsonpath",
-            "value": "$.id"
+            "value": "$.detail"
           }
         }
       }
     }
-]
+  ]
 }

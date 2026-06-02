@@ -1,34 +1,42 @@
 {
   "aiostreams": {
-    "name": "AioStreams",
+    "name": "AIOStreams",
+    "enabled": true,
+    "languages": [
+      "en"
+    ],
     "base_url": "https://aiostreamsfortheweebsstable.midnightignite.me",
     "response_type": "json",
     "movie": {
-      "query": "/stremio/{managedAccounts.aio.username}/{managedAccounts.aio.password}/stream/movie/{query}.json",
+      "query": "/api/v1/search?type=movie&id={query}&format=true",
       "keywords": "{imdbId}"
     },
     "episode": {
-      "query": "/stremio/{managedAccounts.aio.username}/{managedAccounts.aio.password}/stream/series/{query}:{season}:{episode}.json",
+      "query": "/api/v1/search?type=series&id={query}:{season}:{episode}&format=true",
       "keywords": "{showImdbId}"
     },
     "anime": {
-      "query": "/stremio/{managedAccounts.aio.username}/{managedAccounts.aio.password}/stream/anime/{query}:{season}:{episode}.json",
+      "query": "/api/v1/search?type=series&id={query}:{season}:{episode}&format=true",
       "keywords": "{showImdbId}"
     },
     "json_format": {
-      "results": "streams",
+      "results": "data.results",
       "url": "url",
-      "title": "description",
-      "size": "behaviorHints.videoSize",
+      "hash": "infoHash",
+      "title": "name",
+      "seeds": "seeders",
+      "size": "size",
       "host": "url",
       "host:ops": [
         {
           "name": "regex",
-          "params": ["http(?:s|)://(.+)\/"]
+          "params": [
+            "https?://([^/]+)"
+          ]
         }
       ],
-      "playbackFileName": "behaviorHints.filename",
-      "playbackFileSize": "behaviorHints.videoSize"
+      "playbackFileName": "filename",
+      "playbackFileSize": "size"
     }
   }
 }

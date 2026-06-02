@@ -2,12 +2,12 @@
   "name": "AioStreams - Vendor",
   "description": "AioStreams express package for Syncler",
   "website": "https://github.com/Cxsmo-ai/syncler-aiostreams",
-  "tutorial": "https://cxsmo-ai.github.io/syncler-aiostreams/@config/?id=vendor",
+  "tutorial": "https://github.com/Cxsmo-ai/syncler-aiostreams#install",
   "support": "https://github.com/Cxsmo-ai/syncler-aiostreams/issues",
   "packages": [
     {
       "manifest": "https://cxsmo-ai.github.io/syncler-aiostreams/manifest.json",
-      "description": "Easynews express package"
+      "description": "AIOStreams API-backed express package"
     }
   ],
   "defaults": {

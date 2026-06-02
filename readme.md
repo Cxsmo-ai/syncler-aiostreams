@@ -1,6 +1,6 @@
-# AioStreams Syncler Vendor
+# AIOStreams Syncler Vendor
 
-Syncler vendor copied from JakedUp's repo layout and switched to the AioStreams provider config.
+Syncler v2 vendor for AIOStreams using the AIOStreams REST API.
 
 ## Install
 
@@ -22,7 +22,7 @@ The package manifest points Syncler to this package data:
 https://cxsmo-ai.github.io/syncler-aiostreams/express.json
 ```
 
-You need an AioStreams account in Syncler because the package uses the `managedAccounts.aio` username/password placeholders.
+You need an AIOStreams UUID and token in Syncler. The package declares a Syncler managed account named `aio` and injects HTTP Basic auth into AIOStreams API requests as `base64(uuid:token)`.
 
 This package is configured for the AioStreams instance at:
 
@@ -34,6 +34,5 @@ https://aiostreamsfortheweebsstable.midnightignite.me
 
 - `vendor.json` - Syncler v2 vendor URL to add in Syncler.
 - `manifest.json` - Syncler express package manifest.
-- `express.json` - Syncler express package data.
-- `package.json` - Backwards-compatible copy of the express package data.
-- `@config/` - lightweight install page based on the JakedUp repo structure.
+- `express.json` - Syncler express package data using AIOStreams `/api/v1/search`.
+There is no separate config page. Add the vendor in Syncler, install the package, then enter your AIOStreams UUID as the username and your AIOStreams token as the password value in Syncler's managed account prompt.
