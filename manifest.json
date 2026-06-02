@@ -1,15 +1,15 @@
 {
-  "name": "AIOStreams",
-  "id": "com.cxsmo.syncler.aiostreams",
-  "version": 1780440300,
+  "name": "AIOStreams Playback URLs",
+  "id": "com.cxsmo.syncler.aiostreams.playbackurls",
+  "version": 1780440900,
   "classPath": "",
-  "url": "https://raw.githubusercontent.com/Cxsmo-ai/syncler-aiostreams/refs/tags/v1780440300/express.json",
+  "url": "https://raw.githubusercontent.com/Cxsmo-ai/syncler-aiostreams/refs/tags/v1780440900/express.json",
   "type": "express",
   "accounts": [
     {
       "alias": "aio",
       "branding": {
-        "name": "AIOStreams",
+        "name": "AIOStreams Playback URLs",
         "website": "https://midnightignite.me",
         "logo": "https://aiostreamsfortheweebsstable.midnightignite.me/logo.png"
       },

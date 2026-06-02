@@ -13,7 +13,7 @@ https://cxsmo-ai.github.io/syncler-aiostreams/vendor.json
 If GitHub Pages is stale, use the raw vendor URL:
 
 ```
-https://raw.githubusercontent.com/Cxsmo-ai/syncler-aiostreams/refs/tags/v1780440300/vendor.json
+https://raw.githubusercontent.com/Cxsmo-ai/syncler-aiostreams/refs/tags/v1780440900/vendor.json
 ```
 
 The vendor points Syncler to this package manifest:

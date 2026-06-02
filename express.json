@@ -1,6 +1,6 @@
 {
-  "aiostreams": {
-    "name": "AIOStreams",
+  "aiostreams_playback_urls": {
+    "name": "AIOStreams Playback URLs",
     "enabled": true,
     "languages": [
       "en"
