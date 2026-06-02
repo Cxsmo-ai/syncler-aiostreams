@@ -10,6 +10,12 @@ Use this Syncler v2 vendor URL:
 https://cxsmo-ai.github.io/syncler-aiostreams/vendor.json
 ```
 
+If GitHub Pages is stale, use the raw vendor URL:
+
+```
+https://raw.githubusercontent.com/Cxsmo-ai/syncler-aiostreams/refs/heads/main/vendor.json
+```
+
 The vendor points Syncler to this package manifest:
 
 ```
