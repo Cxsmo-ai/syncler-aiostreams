@@ -28,6 +28,16 @@ The package manifest points Syncler to this package data:
 https://raw.githubusercontent.com/Cxsmo-ai/syncler-aiostreams/main/express.json
 ```
 
+## Build Logs
+
+GitHub Actions validates every push and pull request:
+
+```
+https://github.com/Cxsmo-ai/syncler-aiostreams/actions
+```
+
+The workflow logs show JSON parsing, package contract validation, and the no-secret scan. The latest run also uploads the served `vendor.json`, `manifest.json`, and `express.json` as an artifact.
+
 You need an AIOStreams UUID and encrypted token/password in Syncler. The package declares a Syncler managed account named `aio` and injects HTTP Basic auth into AIOStreams API requests as `base64(uuid:token)`.
 
 This package is configured for the AioStreams instance at:

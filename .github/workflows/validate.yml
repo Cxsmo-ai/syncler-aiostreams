@@ -1,0 +1,42 @@
+name: Validate Syncler Vendor
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  validate:
+    name: Validate static package
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Parse package JSON files
+        run: |
+          node -e "for (const f of ['vendor.json','manifest.json','express.json','manifest.compat.json','express.compat.json']) { JSON.parse(require('fs').readFileSync(f,'utf8')); console.log(f, 'ok') }"
+
+      - name: Validate package contract
+        run: node scripts/validate-package.mjs
+
+      - name: Check for secret-like manifest data
+        run: node scripts/check-no-secrets.mjs
+
+      - name: Upload package JSON artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: syncler-aiostreams-package-json
+          path: |
+            vendor.json
+            manifest.json
+            express.json
+          if-no-files-found: error
