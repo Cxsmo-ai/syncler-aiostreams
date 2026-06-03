@@ -1,22 +1,21 @@
 {
-  "name": "AIOStreams Playback URLs",
-  "id": "com.cxsmo.syncler.aiostreams.playbackurls",
-  "version": 1780452289,
-  "url": "https://raw.githubusercontent.com/Cxsmo-ai/syncler-aiostreams/1dc1b10f2faf8f00a1b4e61a4b67606b2e0d167b/express.json",
+  "name": "AIOStreams Direct",
+  "id": "com.cxsmo.syncler.aiostreams.direct",
+  "version": 1780506000,
+  "url": "https://raw.githubusercontent.com/Cxsmo-ai/syncler-aiostreams/main/express.json",
   "type": "express",
   "accounts": [
     {
       "alias": "aio",
       "branding": {
-        "name": "AIOStreams Playback URLs",
+        "name": "AIOStreams Direct",
         "website": "https://midnightignite.me",
         "logo": "https://aiostreamsfortheweebsstable.midnightignite.me/logo.png"
       },
       "auth": {
         "type": "basic",
         "allowedDomains": [
-          "aiostreamsfortheweebsstable.midnightignite.me",
-          "midnightignite.me"
+          "aiostreamsfortheweebsstable.midnightignite.me"
         ],
         "inject": {
           "headers": {

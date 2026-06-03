@@ -1,22 +1,18 @@
 {
-  "name": "AIOStreams Playback URL Vendor",
-  "description": "AIOStreams REST API express package for Syncler",
+  "name": "AIOStreams Direct Vendor",
+  "description": "AIOStreams direct-link Express package for Syncler",
   "website": "https://github.com/Cxsmo-ai/syncler-aiostreams",
   "tutorial": "https://github.com/Cxsmo-ai/syncler-aiostreams#install",
   "support": "https://github.com/Cxsmo-ai/syncler-aiostreams/issues",
   "packages": [
     {
-      "manifest": "https://raw.githubusercontent.com/Cxsmo-ai/syncler-aiostreams/cfd6a950583150143e4605061199944038c8f5dd/manifest.json",
-      "description": "AIOStreams REST API package with Syncler managed account auth"
-    },
-    {
-      "manifest": "https://raw.githubusercontent.com/Cxsmo-ai/syncler-aiostreams/cfd6a950583150143e4605061199944038c8f5dd/manifest.compat.json",
-      "description": "Compatibility test package without managed account metadata"
+      "manifest": "https://raw.githubusercontent.com/Cxsmo-ai/syncler-aiostreams/main/manifest.json",
+      "description": "AIOStreams direct-link package with Syncler managed account auth"
     }
   ],
   "defaults": {
     "packages": [
-      "https://raw.githubusercontent.com/Cxsmo-ai/syncler-aiostreams/cfd6a950583150143e4605061199944038c8f5dd/manifest.json"
+      "https://raw.githubusercontent.com/Cxsmo-ai/syncler-aiostreams/main/manifest.json"
     ],
     "cacheServer": "cache.bouncy.cc"
   },

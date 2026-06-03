@@ -1,6 +1,6 @@
 # AIOStreams Syncler Vendor
 
-Syncler v2 vendor for AIOStreams using the hosted AIOStreams REST API. This package is static: users add the vendor in Syncler and do not need to run Providra, Node, Android, or any self-hosted bridge.
+Syncler v2 vendor for AIOStreams direct links using the hosted AIOStreams REST API. This package is static: users add the vendor in Syncler and do not need to run Providra, Node, Android, Oracle, or any self-hosted bridge.
 
 ## Install
 
@@ -28,7 +28,7 @@ The package manifest points Syncler to this package data:
 https://raw.githubusercontent.com/Cxsmo-ai/syncler-aiostreams/main/express.json
 ```
 
-You need an AIOStreams UUID and token in Syncler. The package declares a Syncler managed account named `aio` and injects HTTP Basic auth into AIOStreams API requests as `base64(uuid:token)`.
+You need an AIOStreams UUID and encrypted token/password in Syncler. The package declares a Syncler managed account named `aio` and injects HTTP Basic auth into AIOStreams API requests as `base64(uuid:token)`.
 
 This package is configured for the AioStreams instance at:
 
@@ -40,7 +40,7 @@ https://aiostreamsfortheweebsstable.midnightignite.me
 
 - `vendor.json` - Syncler v2 vendor URL to add in Syncler.
 - `manifest.json` - Syncler express package manifest.
-- `express.json` - Syncler express package data using AIOStreams `/api/v1/search`.
+- `express.json` - Syncler express package data using AIOStreams `/api/v1/search` with `requiredFields=url`.
 
 There is no separate config page. Add the vendor in Syncler, install the package, then enter your AIOStreams UUID as the username and your AIOStreams token as the password value in Syncler's managed account prompt.
 
@@ -69,4 +69,4 @@ node scripts/check-no-secrets.mjs
 
 ## Scope
 
-This repo intentionally supports AIOStreams/Stremio results only. It does not include Providra's local server, Android wrapper, or Nuvio plugin bridge.
+This repo intentionally supports AIOStreams direct-link results only. It does not include Providra's local server, Android wrapper, Oracle bridge, or Nuvio plugin support.
