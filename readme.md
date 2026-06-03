@@ -50,7 +50,7 @@ https://aiostreamsfortheweebsstable.midnightignite.me
 
 - `vendor.json` - Syncler v2 vendor URL to add in Syncler.
 - `manifest.json` - Syncler express package manifest.
-- `express.json` - Syncler express package data using AIOStreams `/api/v1/search` with `requiredFields=url`.
+- `express.json` - Syncler express package data using AIOStreams `/api/v1/search` with a minimal direct-link mapping.
 
 There is no separate config page. Add the vendor in Syncler, install the package, then enter your AIOStreams UUID as the username and your AIOStreams token as the password value in Syncler's managed account prompt.
 

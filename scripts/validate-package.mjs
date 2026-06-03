@@ -37,7 +37,10 @@ assert(provider.movie.query.includes("requiredFields=url"), "Movie query must re
 assert(provider.episode.query.includes("requiredFields=url"), "Episode query must require url results.");
 assert(provider.json_format.url === "url", "Direct URL mapping is required.");
 assert(provider.json_format.host === "url", "Host must be derived from URL.");
+assert(provider.json_format.title === "filename", "Use filename as the most compatible direct-link title.");
 assert(Array.isArray(provider.json_format["host:ops"]), "Host regex op is required.");
+assert(!Object.prototype.hasOwnProperty.call(provider.json_format, "seeds"), "Do not map torrent-only seed fields for direct-link compatibility.");
+assert(!Object.prototype.hasOwnProperty.call(provider.json_format, "playbackFileName"), "Keep v1 direct-link mapping minimal until Syncler playback is proven.");
 assert(!Object.prototype.hasOwnProperty.call(provider.json_format, "playbackFileSize"), "Do not map playbackFileSize until file-size semantics are proven.");
 
 console.log("Package JSON validation passed.");
