@@ -1,0 +1,30 @@
+{
+  "compatibility_test": {
+    "name": "Compatibility Test",
+    "enabled": true,
+    "languages": [
+      "en"
+    ],
+    "base_url": "https://example.com",
+    "response_type": "json",
+    "movie": {
+      "query": "/",
+      "keywords": "{imdbId}"
+    },
+    "episode": {
+      "query": "/",
+      "keywords": "{showImdbId}"
+    },
+    "anime": {
+      "query": "/",
+      "keywords": "{showImdbId}"
+    },
+    "json_format": {
+      "results": "results",
+      "url": "url",
+      "title": "title",
+      "seeds": "seeds",
+      "size": "size"
+    }
+  }
+}
