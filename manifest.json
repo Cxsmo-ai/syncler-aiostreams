@@ -2,7 +2,7 @@
   "name": "AIOStreams Playback URLs",
   "id": "com.cxsmo.syncler.aiostreams.playbackurls",
   "version": 1780452289,
-  "url": "https://raw.githubusercontent.com/Cxsmo-ai/syncler-aiostreams/main/express.json",
+  "url": "https://raw.githubusercontent.com/Cxsmo-ai/syncler-aiostreams/1dc1b10f2faf8f00a1b4e61a4b67606b2e0d167b/express.json",
   "type": "express",
   "accounts": [
     {
