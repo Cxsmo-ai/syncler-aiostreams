@@ -1,9 +1,9 @@
 {
   "name": "AIOStreams Playback URLs",
   "id": "com.cxsmo.syncler.aiostreams.playbackurls",
-  "version": 1780440900,
+  "version": 1780452289,
   "classPath": "",
-  "url": "https://raw.githubusercontent.com/Cxsmo-ai/syncler-aiostreams/refs/tags/v1780440900/express.json",
+  "url": "https://cxsmo-ai.github.io/syncler-aiostreams/express.json",
   "type": "express",
   "accounts": [
     {
@@ -16,6 +16,7 @@
       "auth": {
         "type": "basic",
         "allowedDomains": [
+          "aiostreamsfortheweebsstable.midnightignite.me",
           "midnightignite.me"
         ],
         "inject": {

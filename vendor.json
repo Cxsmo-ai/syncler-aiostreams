@@ -1,18 +1,18 @@
 {
   "name": "AIOStreams Playback URL Vendor",
-  "description": "AIOStreams playback URL express package for Syncler",
+  "description": "AIOStreams REST API express package for Syncler",
   "website": "https://github.com/Cxsmo-ai/syncler-aiostreams",
   "tutorial": "https://github.com/Cxsmo-ai/syncler-aiostreams#install",
   "support": "https://github.com/Cxsmo-ai/syncler-aiostreams/issues",
   "packages": [
     {
-      "manifest": "https://raw.githubusercontent.com/Cxsmo-ai/syncler-aiostreams/refs/tags/v1780440900/manifest.json",
-      "description": "AIOStreams playback URL package"
+      "manifest": "https://cxsmo-ai.github.io/syncler-aiostreams/manifest.json",
+      "description": "AIOStreams REST API package"
     }
   ],
   "defaults": {
     "packages": [
-      "https://raw.githubusercontent.com/Cxsmo-ai/syncler-aiostreams/refs/tags/v1780440900/manifest.json"
+      "https://cxsmo-ai.github.io/syncler-aiostreams/manifest.json"
     ],
     "cacheServer": "cache.bouncy.cc"
   },

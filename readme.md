@@ -1,6 +1,6 @@
 # AIOStreams Syncler Vendor
 
-Syncler v2 vendor for AIOStreams using the AIOStreams REST API.
+Syncler v2 vendor for AIOStreams using the hosted AIOStreams REST API. This package is static: users add the vendor in Syncler and do not need to run Providra, Node, Android, or any self-hosted bridge.
 
 ## Install
 
@@ -10,10 +10,10 @@ Use this Syncler v2 vendor URL:
 https://cxsmo-ai.github.io/syncler-aiostreams/vendor.json
 ```
 
-If GitHub Pages is stale, use the raw vendor URL:
+If GitHub Pages is stale immediately after a release, use the raw vendor URL for the current main branch:
 
 ```
-https://raw.githubusercontent.com/Cxsmo-ai/syncler-aiostreams/refs/tags/v1780440900/vendor.json
+https://raw.githubusercontent.com/Cxsmo-ai/syncler-aiostreams/main/vendor.json
 ```
 
 The vendor points Syncler to this package manifest:
@@ -41,4 +41,9 @@ https://aiostreamsfortheweebsstable.midnightignite.me
 - `vendor.json` - Syncler v2 vendor URL to add in Syncler.
 - `manifest.json` - Syncler express package manifest.
 - `express.json` - Syncler express package data using AIOStreams `/api/v1/search`.
+
 There is no separate config page. Add the vendor in Syncler, install the package, then enter your AIOStreams UUID as the username and your AIOStreams token as the password value in Syncler's managed account prompt.
+
+## Scope
+
+This repo intentionally supports AIOStreams/Stremio results only. It does not include Providra's local server, Android wrapper, or Nuvio plugin bridge.
