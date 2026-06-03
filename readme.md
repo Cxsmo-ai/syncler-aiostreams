@@ -44,6 +44,29 @@ https://aiostreamsfortheweebsstable.midnightignite.me
 
 There is no separate config page. Add the vendor in Syncler, install the package, then enter your AIOStreams UUID as the username and your AIOStreams token as the password value in Syncler's managed account prompt.
 
+If you only have an AIOStreams Stremio manifest URL, use the two path pieces after `/stremio/`:
+
+```
+https://aiostreamsfortheweebsstable.midnightignite.me/stremio/<uuid>/<token>/manifest.json
+```
+
+In Syncler:
+
+- Username: `<uuid>`
+- Password: `<token>`
+
+You can extract those values locally without saving them:
+
+```
+node scripts/extract-manifest-account.mjs "<your manifest URL>"
+```
+
+Do not commit real AIOStreams manifest URLs or encoded account paths to this repo. Run this check before pushing:
+
+```
+node scripts/check-no-secrets.mjs
+```
+
 ## Scope
 
 This repo intentionally supports AIOStreams/Stremio results only. It does not include Providra's local server, Android wrapper, or Nuvio plugin bridge.
