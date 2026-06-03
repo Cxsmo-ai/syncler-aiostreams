@@ -3,7 +3,7 @@
   "id": "com.cxsmo.syncler.aiostreams.playbackurls",
   "version": 1780452289,
   "classPath": "",
-  "url": "https://cxsmo-ai.github.io/syncler-aiostreams/express.json",
+  "url": "https://raw.githubusercontent.com/Cxsmo-ai/syncler-aiostreams/main/express.json",
   "type": "express",
   "accounts": [
     {

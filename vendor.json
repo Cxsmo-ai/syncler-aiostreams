@@ -6,17 +6,17 @@
   "support": "https://github.com/Cxsmo-ai/syncler-aiostreams/issues",
   "packages": [
     {
-      "manifest": "https://cxsmo-ai.github.io/syncler-aiostreams/manifest.json",
+      "manifest": "https://raw.githubusercontent.com/Cxsmo-ai/syncler-aiostreams/main/manifest.json",
       "description": "AIOStreams REST API package with Syncler managed account auth"
     },
     {
-      "manifest": "https://cxsmo-ai.github.io/syncler-aiostreams/manifest.compat.json",
+      "manifest": "https://raw.githubusercontent.com/Cxsmo-ai/syncler-aiostreams/main/manifest.compat.json",
       "description": "Compatibility test package without managed account metadata"
     }
   ],
   "defaults": {
     "packages": [
-      "https://cxsmo-ai.github.io/syncler-aiostreams/manifest.json"
+      "https://raw.githubusercontent.com/Cxsmo-ai/syncler-aiostreams/main/manifest.json"
     ],
     "cacheServer": "cache.bouncy.cc"
   },
