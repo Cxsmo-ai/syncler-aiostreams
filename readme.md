@@ -60,6 +60,8 @@ https://aiostreamsfortheweebs.midnightignite.me
 
 The allowed-domain restriction prevents managed credentials from being forwarded to any other host. Supporting another AIOStreams instance requires a separate package/account declaration rather than a user-editable URL.
 
+The vendor deliberately disables Syncler cache servers. Search requests must go directly to Midnight so the managed Basic-auth header is preserved and credentials are never forwarded through a third-party cache.
+
 ## Repository files
 
 - `vendor.json` — vendor URL entered in Syncler.

@@ -25,8 +25,12 @@ const account = accounts[0];
 
 assert(vendor.packages?.length === 1, "vendor.json must expose exactly one package");
 assert(vendor.packages[0].manifest === `${repoBase}/manifest.json`, "vendor package manifest URL is wrong");
+assert(vendor.packages[0].name === "AIOStreams Nightly (Direct)", "vendor package name is missing");
+assert(vendor.packages[0].enabled === true, "vendor package must be enabled");
 assert(vendor.defaults?.packages?.length === 1, "vendor defaults must install exactly one package");
 assert(vendor.defaults.packages[0] === vendor.packages[0].manifest, "vendor default package must match the listed package");
+assert(Array.isArray(vendor.cacheServers) && vendor.cacheServers.length === 0, "authenticated requests must not use a third-party cache server");
+assert(!("cacheServer" in vendor.defaults), "authenticated requests must not set a default cache server");
 assert(manifest.type === "express", "manifest.json must declare an Express package");
 assert(manifest.id === "com.cxsmo.syncler.aiostreams.direct", "package ID must remain stable for upgrades");
 assert(Number.isSafeInteger(manifest.version) && manifest.version > 0, "manifest version must be a positive integer");
