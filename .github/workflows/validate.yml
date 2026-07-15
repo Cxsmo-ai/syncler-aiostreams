@@ -1,16 +1,25 @@
-name: Validate Syncler Vendor
+name: Validate Syncler package
 
 on:
   push:
-    branches:
-      - main
+    branches: [main]
   pull_request:
   workflow_dispatch:
+  schedule:
+    - cron: "23 7 * * *"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: validate-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   validate:
-    name: Validate static package
+    name: Contract, security, and live smoke tests
     runs-on: ubuntu-latest
+    timeout-minutes: 8
 
     steps:
       - name: Checkout
@@ -21,17 +30,14 @@ jobs:
         with:
           node-version: "22"
 
-      - name: Parse package JSON files
-        run: |
-          node -e "for (const f of ['vendor.json','manifest.json','express.json','manifest.compat.json','express.compat.json']) { JSON.parse(require('fs').readFileSync(f,'utf8')); console.log(f, 'ok') }"
+      - name: Run deterministic tests
+        run: npm test
 
-      - name: Validate package contract
-        run: node scripts/validate-package.mjs
+      - name: Smoke-test Midnight nightly
+        run: npm run smoke:live
 
-      - name: Check for secret-like manifest data
-        run: node scripts/check-no-secrets.mjs
-
-      - name: Upload package JSON artifact
+      - name: Upload install artifacts
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: syncler-aiostreams-package-json

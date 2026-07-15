@@ -3,44 +3,71 @@ import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const root = dirname(dirname(fileURLToPath(import.meta.url)));
+const nightlyHost = "aiostreamsfortheweebs.midnightignite.me";
+const nightlyBase = `https://${nightlyHost}`;
+const repoBase = "https://raw.githubusercontent.com/Cxsmo-ai/syncler-aiostreams/main";
 
 function readJson(name) {
   return JSON.parse(readFileSync(join(root, name), "utf8"));
 }
 
 function assert(condition, message) {
-  if (!condition) {
-    console.error(message);
-    process.exit(1);
-  }
+  if (!condition) throw new Error(message);
 }
 
 const vendor = readJson("vendor.json");
 const manifest = readJson("manifest.json");
 const express = readJson("express.json");
+const providerEntries = Object.entries(express);
 const provider = express.aiostreams_direct;
-const account = Array.isArray(manifest.accounts) ? manifest.accounts[0] : null;
+const accounts = Array.isArray(manifest.accounts) ? manifest.accounts : [];
+const account = accounts[0];
 
-assert(vendor.packages && vendor.packages.length === 1, "vendor.json should expose exactly one package.");
-assert(manifest.type === "express", "manifest.json must be an express package.");
-assert(manifest.url === "https://raw.githubusercontent.com/Cxsmo-ai/syncler-aiostreams/main/express.json", "manifest.json should point at main/express.json.");
-assert(account && account.alias === "aio", "manifest.json must declare managed account alias aio.");
-assert(account.auth && account.auth.type === "basic", "AIOStreams account must use basic auth.");
-assert(account.auth.allowedDomains && account.auth.allowedDomains.length === 1, "Only the fixed AIOStreams host should receive credentials.");
-assert(account.auth.allowedDomains[0] === "aiostreamsfortheweebsstable.midnightignite.me", "Unexpected allowed domain.");
-assert(account.auth.inject.headers.Authorization === "Basic {managedAccounts.aio.basicToken}", "Authorization header injection is wrong.");
-assert(provider, "express.json must include aiostreams_direct provider.");
-assert(provider.base_url === "https://aiostreamsfortheweebsstable.midnightignite.me", "Provider base_url is wrong.");
-assert(provider.movie.query.includes("id={imdbId}"), "Movie query must use imdbId directly.");
-assert(provider.episode.query.includes("id={showImdbId}:{season}:{episode}"), "Episode query must use showImdbId/season/episode.");
-assert(provider.movie.query.includes("requiredFields=url"), "Movie query must require url results.");
-assert(provider.episode.query.includes("requiredFields=url"), "Episode query must require url results.");
-assert(provider.json_format.url === "url", "Direct URL mapping is required.");
-assert(provider.json_format.host === "url", "Host must be derived from URL.");
-assert(provider.json_format.title === "filename", "Use filename as the most compatible direct-link title.");
-assert(Array.isArray(provider.json_format["host:ops"]), "Host regex op is required.");
-assert(!Object.prototype.hasOwnProperty.call(provider.json_format, "seeds"), "Do not map torrent-only seed fields for direct-link compatibility.");
-assert(!Object.prototype.hasOwnProperty.call(provider.json_format, "playbackFileName"), "Keep v1 direct-link mapping minimal until Syncler playback is proven.");
-assert(!Object.prototype.hasOwnProperty.call(provider.json_format, "playbackFileSize"), "Do not map playbackFileSize until file-size semantics are proven.");
+assert(vendor.packages?.length === 1, "vendor.json must expose exactly one package");
+assert(vendor.packages[0].manifest === `${repoBase}/manifest.json`, "vendor package manifest URL is wrong");
+assert(vendor.defaults?.packages?.length === 1, "vendor defaults must install exactly one package");
+assert(vendor.defaults.packages[0] === vendor.packages[0].manifest, "vendor default package must match the listed package");
+assert(manifest.type === "express", "manifest.json must declare an Express package");
+assert(manifest.id === "com.cxsmo.syncler.aiostreams.direct", "package ID must remain stable for upgrades");
+assert(Number.isSafeInteger(manifest.version) && manifest.version > 0, "manifest version must be a positive integer");
+assert(manifest.url === `${repoBase}/express.json`, "manifest package-data URL is wrong");
+assert(accounts.length === 1, "manifest must declare exactly one managed account");
+assert(account.alias === "aio", "managed account alias must be aio");
+assert(account.branding?.website === "https://midnightignite.me", "branding website must use the primary domain");
+assert(account.auth?.type === "basic", "AIOStreams must use managed Basic authentication");
+assert(account.auth?.allowedDomains?.length === 1, "credentials must be restricted to one domain");
+assert(account.auth.allowedDomains[0] === nightlyHost, "credentials are not restricted to Midnight nightly");
+assert(account.auth.inject?.headers?.Authorization === "Basic {managedAccounts.aio.basicToken}", "managed Basic header injection is wrong");
+assert(account.verification?.url === `${nightlyBase}/api/v1/user`, "account verification URL is wrong");
+assert(account.verification?.method === "GET", "account verification must use GET, not HEAD");
+assert(account.verification?.responseType === "json", "account verification must expect JSON");
+assert(account.verification?.extract?.username?.value === "$.data.userData.uuid", "verification UUID extraction is wrong");
+assert(providerEntries.length === 1 && provider, "express.json must expose exactly one provider");
+assert(provider.enabled === true, "AIOStreams provider must be enabled");
+assert(provider.base_url === nightlyBase, "provider must use Midnight nightly");
+assert(provider.response_type === "json", "Search API response type must be JSON");
 
-console.log("Package JSON validation passed.");
+for (const kind of ["movie", "episode", "anime"]) {
+  const query = provider[kind]?.query;
+  assert(typeof query === "string" && query.startsWith("/api/v1/search?"), `${kind} must call the Search API`);
+  assert(query.includes("requiredFields=url"), `${kind} must require a playable URL`);
+  assert(query.includes("requiredFields=filename"), `${kind} must require a filename`);
+  assert(!query.includes("format=true"), `${kind} should avoid unnecessary Stremio formatting work`);
+}
+
+assert(provider.movie.query.includes("type=movie&id={imdbId}"), "movie query must use imdbId");
+assert(provider.episode.query.includes("type=series&id={showImdbId}:{season}:{episode}"), "episode query must use show IMDb ID and season/episode");
+assert(provider.anime.query.includes("type=series&id={showImdbId}:{season}:{episode}"), "anime query must use show IMDb ID and season/episode");
+assert(provider.json_format?.results === "data.results", "Search API result path is wrong");
+assert(provider.json_format.url === "url", "direct URL mapping is required");
+assert(provider.json_format.title === "filename", "source title must use the filename");
+assert(provider.json_format.size === "size", "source size mapping is required");
+assert(provider.json_format.playbackFileName === "filename", "playback filename mapping is required");
+assert(provider.json_format.playbackFileSize === "size", "playback file size mapping is required");
+assert(provider.json_format.host === "url", "direct source host must be derived from its URL");
+assert(Array.isArray(provider.json_format["host:ops"]), "host extraction operation is required");
+assert(provider.json_format["host:ops"].length === 1, "host extraction must have exactly one operation");
+assert(provider.json_format["host:ops"][0].name === "regex", "host extraction must use a regex operation");
+assert(!JSON.stringify({ vendor, manifest, express }).includes("aiostreamsfortheweebsstable"), "stable host must not appear in package data");
+
+console.log("Static Syncler package contract is valid.");
