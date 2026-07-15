@@ -1,0 +1,17 @@
+{
+  "name": "syncler-aiostreams",
+  "version": "1.0.0",
+  "private": true,
+  "description": "GitHub-only Syncler Express package for Midnight's AIOStreams Nightly",
+  "type": "module",
+  "scripts": {
+    "validate": "node scripts/validate-package.mjs && node scripts/check-no-secrets.mjs",
+    "test:contract": "node --test test/*.test.mjs",
+    "test": "npm run validate && npm run test:contract",
+    "smoke:live": "node scripts/smoke-live.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "license": "MIT"
+}

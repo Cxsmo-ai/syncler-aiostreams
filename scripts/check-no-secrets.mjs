@@ -12,7 +12,9 @@ const encodedConfigPattern = "eyJpIjoi" + "[^\"\\s]+";
 const suspicious = [
   new RegExp(manifestPattern, "i"),
   new RegExp(stremioPathPattern, "i"),
-  new RegExp(encodedConfigPattern, "i")
+  new RegExp(encodedConfigPattern, "i"),
+  /Authorization["'\s:]+Basic\s+[A-Za-z0-9+/]{24,}={0,2}/i,
+  /AIOSTREAMS_PASSWORD\s*=\s*["'](?!<password>)[^"']{8,}["']/i
 ];
 
 function walk(dir) {

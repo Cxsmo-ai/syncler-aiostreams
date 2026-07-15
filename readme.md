@@ -1,82 +1,102 @@
-# AIOStreams Syncler Vendor
+# AIOStreams for Syncler
 
-Syncler v2 vendor for AIOStreams direct links using the hosted AIOStreams REST API. This package is static: users add the vendor in Syncler and do not need to run Providra, Node, Android, Oracle, or any self-hosted bridge.
+A static Syncler Express provider package that queries Midnight's **AIOStreams Nightly** Search API. Authentication is handled by Syncler's provider-package managed account system, so this project needs no bridge, VPS, worker, proxy, or other hosted backend.
 
 ## Install
 
-Use this Syncler v2 vendor URL:
+Add this vendor URL in Syncler:
 
-```
+```text
 https://raw.githubusercontent.com/Cxsmo-ai/syncler-aiostreams/main/vendor.json
 ```
 
-GitHub Pages may lag after a release. The Pages URL is:
+GitHub Pages also serves the same file:
 
-```
+```text
 https://cxsmo-ai.github.io/syncler-aiostreams/vendor.json
 ```
 
-The vendor points Syncler to this package manifest:
+Install **AIOStreams for Syncler** from that vendor. On a Syncler version that supports provider-package managed accounts, open:
 
-```
-https://raw.githubusercontent.com/Cxsmo-ai/syncler-aiostreams/main/manifest.json
-```
-
-The package manifest points Syncler to this package data:
-
-```
-https://raw.githubusercontent.com/Cxsmo-ai/syncler-aiostreams/main/express.json
+```text
+Settings > Third-party accounts > Provider package managed accounts
 ```
 
-## Build Logs
+Add the **Midnight's AIOStreams Nightly** account. Use:
 
-GitHub Actions validates every push and pull request:
+- Username: your AIOStreams UUID
+- Password: your AIOStreams password/token
 
-```
-https://github.com/Cxsmo-ai/syncler-aiostreams/actions
-```
+If starting from an AIOStreams Stremio manifest, those are the two values in:
 
-The workflow logs show JSON parsing, package contract validation, and the no-secret scan. The latest run also uploads the served `vendor.json`, `manifest.json`, and `express.json` as an artifact.
-
-You need an AIOStreams UUID and encrypted token/password in Syncler. The package declares a Syncler managed account named `aio` and injects HTTP Basic auth into AIOStreams API requests as `base64(uuid:token)`.
-
-This package is configured for the AioStreams instance at:
-
-```
-https://aiostreamsfortheweebsstable.midnightignite.me
+```text
+https://aiostreamsfortheweebs.midnightignite.me/stremio/<uuid>/<password>/manifest.json
 ```
 
-## Files
+After adding the account on a phone, restart Syncler on a TV device so the managed account synchronizes.
 
-- `vendor.json` - Syncler v2 vendor URL to add in Syncler.
-- `manifest.json` - Syncler express package manifest.
-- `express.json` - Syncler express package data using AIOStreams `/api/v1/search` with a minimal direct-link mapping.
+## How it works
 
-There is no separate config page. Add the vendor in Syncler, install the package, then enter your AIOStreams UUID as the username and your AIOStreams token as the password value in Syncler's managed account prompt.
-
-If you only have an AIOStreams Stremio manifest URL, use the two path pieces after `/stremio/`:
-
-```
-https://aiostreamsfortheweebsstable.midnightignite.me/stremio/<uuid>/<token>/manifest.json
-```
-
-In Syncler:
-
-- Username: `<uuid>`
-- Password: `<token>`
-
-You can extract those values locally without saving them:
-
-```
-node scripts/extract-manifest-account.mjs "<your manifest URL>"
+```text
+vendor.json
+  -> manifest.json
+     -> Syncler managed Basic account
+     -> express.json
+        -> GET Midnight nightly /api/v1/search
+        -> map AIOStreams direct HTTPS results into Syncler sources
 ```
 
-Do not commit real AIOStreams manifest URLs or encoded account paths to this repo. Run this check before pushing:
+Syncler injects `Authorization: Basic base64(uuid:password)` only for the explicitly allowed Midnight nightly domain. Credentials are stored by Syncler and are never placed in this repository or in an install URL.
 
+The provider requests only results with both `url` and `filename`. This intentionally excludes unresolved torrents, informational cards, and other non-playable Search API entries. Configure debrid or another direct-stream source in AIOStreams if you want those sources returned to Syncler.
+
+## Fixed AIOStreams instance
+
+This package is intentionally locked to Midnight's nightly instance:
+
+```text
+https://aiostreamsfortheweebs.midnightignite.me
 ```
-node scripts/check-no-secrets.mjs
+
+The allowed-domain restriction prevents managed credentials from being forwarded to any other host. Supporting another AIOStreams instance requires a separate package/account declaration rather than a user-editable URL.
+
+## Repository files
+
+- `vendor.json` — vendor URL entered in Syncler.
+- `manifest.json` — package metadata and managed-account declaration.
+- `express.json` — movie, episode, and anime Search API queries and direct-source mappings.
+- `scripts/validate-package.mjs` — validates the complete static package contract.
+- `scripts/check-no-secrets.mjs` — rejects tokenized AIOStreams URLs and embedded credentials.
+- `scripts/smoke-live.mjs` — read-only smoke test for Midnight's live nightly endpoints.
+- `test/package.test.mjs` — deterministic managed-account, query, and response-mapping tests.
+
+## Test locally
+
+Node.js 20 or newer is sufficient; the repository has no runtime dependencies.
+
+```bash
+npm test
+npm run smoke:live
 ```
 
-## Scope
+The default live smoke test does not use credentials. It confirms that the configure page is reachable and both protected API routes reject anonymous calls as expected.
 
-This repo intentionally supports AIOStreams direct-link results only. It does not include Providra's local server, Android wrapper, Oracle bridge, or Nuvio plugin support.
+For an optional authenticated end-to-end test, provide credentials only through temporary environment variables:
+
+```bash
+AIOSTREAMS_UUID='<uuid>' AIOSTREAMS_PASSWORD='<password>' npm run smoke:live
+```
+
+The script never prints those values. Do not commit them, paste them into an issue, or add them to a vendor URL.
+
+GitHub Actions runs validation, contract tests, the unauthenticated live smoke test, and the secret scan on every push and pull request. It also runs the live smoke test daily so upstream nightly changes are detected.
+
+## Limitations
+
+- Midnight's instance is operated independently and its availability or policy may change.
+- Syncler must support provider-package managed accounts and `json_format` direct sources.
+- Only direct HTTPS results are mapped. Torrent hashes, NZBs, external action cards, and results needing custom request headers are not emitted by this package.
+
+## License
+
+MIT

@@ -1,7 +1,0 @@
-{
-  "name": "AIOStreams Compatibility Test",
-  "id": "com.cxsmo.syncler.aiostreams.compat",
-  "version": 1780456909,
-  "url": "https://raw.githubusercontent.com/Cxsmo-ai/syncler-aiostreams/1dc1b10f2faf8f00a1b4e61a4b67606b2e0d167b/express.compat.json",
-  "type": "express"
-}

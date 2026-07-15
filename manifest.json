@@ -1,21 +1,21 @@
 {
-  "name": "AIOStreams Direct",
+  "name": "AIOStreams for Syncler",
   "id": "com.cxsmo.syncler.aiostreams.direct",
-  "version": 1780506000,
+  "version": 1784141455,
   "url": "https://raw.githubusercontent.com/Cxsmo-ai/syncler-aiostreams/main/express.json",
   "type": "express",
   "accounts": [
     {
       "alias": "aio",
       "branding": {
-        "name": "AIOStreams Direct",
+        "name": "Midnight's AIOStreams Nightly",
         "website": "https://midnightignite.me",
-        "logo": "https://aiostreamsfortheweebsstable.midnightignite.me/logo.png"
+        "logo": "https://aiostreamsfortheweebs.midnightignite.me/logo.png"
       },
       "auth": {
         "type": "basic",
         "allowedDomains": [
-          "aiostreamsfortheweebsstable.midnightignite.me"
+          "aiostreamsfortheweebs.midnightignite.me"
         ],
         "inject": {
           "headers": {
@@ -24,7 +24,7 @@
         }
       },
       "verification": {
-        "url": "https://aiostreamsfortheweebsstable.midnightignite.me/api/v1/user",
+        "url": "https://aiostreamsfortheweebs.midnightignite.me/api/v1/user",
         "method": "GET",
         "responseType": "json",
         "extract": {
