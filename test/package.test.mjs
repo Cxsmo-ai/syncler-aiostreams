@@ -40,8 +40,15 @@ function mapResult(format, result) {
 test("vendor installs the canonical manifest", () => {
   const expected = "https://raw.githubusercontent.com/Cxsmo-ai/syncler-aiostreams/main/manifest.json";
   assert.equal(vendor.packages.length, 1);
+  assert.equal(vendor.packages[0].name, "AIOStreams Nightly (Direct)");
+  assert.equal(vendor.packages[0].enabled, true);
   assert.equal(vendor.packages[0].manifest, expected);
   assert.deepEqual(vendor.defaults.packages, [expected]);
+});
+
+test("authenticated requests never use a third-party cache server", () => {
+  assert.deepEqual(vendor.cacheServers, []);
+  assert.equal("cacheServer" in vendor.defaults, false);
 });
 
 test("managed account injects Basic auth only into Midnight nightly", () => {

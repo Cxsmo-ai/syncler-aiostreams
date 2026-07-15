@@ -7,6 +7,8 @@
     ],
     "base_url": "https://aiostreamsfortheweebs.midnightignite.me",
     "response_type": "json",
+    "time_to_wait_between_each_request_ms": 300,
+    "time_to_wait_on_too_many_request_ms": 5000,
     "movie": {
       "query": "/api/v1/search?type=movie&id={imdbId}&requiredFields=url&requiredFields=filename",
       "keywords": "{imdbId}"
@@ -31,7 +33,7 @@
         {
           "name": "regex",
           "params": [
-            "https?://([^/]+)"
+            "^https?://([^/:]+)"
           ]
         }
       ]
