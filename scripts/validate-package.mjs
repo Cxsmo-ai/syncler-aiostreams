@@ -16,25 +16,26 @@ function assert(condition, message) {
 }
 
 const vendor = readJson("vendor.json");
-const manifest = readJson("manifest.json");
-const express = readJson("express.json");
+const manifest = readJson("manifest.github.json");
+const express = readJson("express.github.json");
 const providerEntries = Object.entries(express);
-const provider = express.aiostreams_direct;
+const provider = express.aiostreams_github_direct_v2;
 const accounts = Array.isArray(manifest.accounts) ? manifest.accounts : [];
 const account = accounts[0];
 
 assert(vendor.packages?.length === 1, "vendor.json must expose exactly one package");
-assert(vendor.packages[0].manifest === `${repoBase}/manifest.json`, "vendor package manifest URL is wrong");
-assert(vendor.packages[0].name === "AIOStreams Nightly (Direct)", "vendor package name is missing");
+assert(vendor.version === 3, "vendor version must identify the GitHub-only v2 refresh");
+assert(vendor.packages[0].manifest === `${repoBase}/manifest.github.json`, "vendor package manifest URL is wrong");
+assert(vendor.packages[0].name === "AIOStreams Nightly (GitHub Direct v2)", "vendor package name is missing");
 assert(vendor.packages[0].enabled === true, "vendor package must be enabled");
 assert(vendor.defaults?.packages?.length === 1, "vendor defaults must install exactly one package");
 assert(vendor.defaults.packages[0] === vendor.packages[0].manifest, "vendor default package must match the listed package");
 assert(Array.isArray(vendor.cacheServers) && vendor.cacheServers.length === 0, "authenticated requests must not use a third-party cache server");
 assert(!("cacheServer" in vendor.defaults), "authenticated requests must not set a default cache server");
-assert(manifest.type === "express", "manifest.json must declare an Express package");
-assert(manifest.id === "com.cxsmo.syncler.aiostreams.direct", "package ID must remain stable for upgrades");
+assert(manifest.type === "express", "manifest.github.json must declare an Express package");
+assert(manifest.id === "com.cxsmo.syncler.aiostreams.github.direct.v2", "fresh package ID is wrong");
 assert(Number.isSafeInteger(manifest.version) && manifest.version > 0, "manifest version must be a positive integer");
-assert(manifest.url === `${repoBase}/express.json`, "manifest package-data URL is wrong");
+assert(manifest.url === `${repoBase}/express.github.json`, "manifest package-data URL is wrong");
 assert(accounts.length === 1, "manifest must declare exactly one managed account");
 assert(account.alias === "aio", "managed account alias must be aio");
 assert(account.branding?.website === "https://midnightignite.me", "branding website must use the primary domain");
@@ -46,7 +47,7 @@ assert(account.verification?.url === `${nightlyBase}/api/v1/user`, "account veri
 assert(account.verification?.method === "GET", "account verification must use GET, not HEAD");
 assert(account.verification?.responseType === "json", "account verification must expect JSON");
 assert(account.verification?.extract?.username?.value === "$.data.userData.uuid", "verification UUID extraction is wrong");
-assert(providerEntries.length === 1 && provider, "express.json must expose exactly one provider");
+assert(providerEntries.length === 1 && provider, "express.github.json must expose exactly one provider");
 assert(provider.enabled === true, "AIOStreams provider must be enabled");
 assert(provider.base_url === nightlyBase, "provider must use Midnight nightly");
 assert(provider.response_type === "json", "Search API response type must be JSON");

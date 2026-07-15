@@ -1,8 +1,8 @@
 {
-  "name": "AIOStreams for Syncler",
-  "id": "com.cxsmo.syncler.aiostreams.direct",
-  "version": 1784141456,
-  "url": "https://raw.githubusercontent.com/Cxsmo-ai/syncler-aiostreams/main/express.json",
+  "name": "AIOStreams for Syncler (GitHub v2)",
+  "id": "com.cxsmo.syncler.aiostreams.github.direct.v2",
+  "version": 1784141457,
+  "url": "https://raw.githubusercontent.com/Cxsmo-ai/syncler-aiostreams/main/express.github.json",
   "type": "express",
   "accounts": [
     {

@@ -39,9 +39,9 @@ After adding the account on a phone, restart Syncler on a TV device so the manag
 
 ```text
 vendor.json
-  -> manifest.json
+  -> manifest.github.json
      -> Syncler managed Basic account
-     -> express.json
+     -> express.github.json
         -> GET Midnight nightly /api/v1/search
         -> map AIOStreams direct HTTPS results into Syncler sources
 ```
@@ -65,8 +65,8 @@ The vendor deliberately disables Syncler cache servers. Search requests must go 
 ## Repository files
 
 - `vendor.json` — vendor URL entered in Syncler.
-- `manifest.json` — package metadata and managed-account declaration.
-- `express.json` — movie, episode, and anime Search API queries and direct-source mappings.
+- `manifest.github.json` — fresh GitHub-only package identity and managed-account declaration.
+- `express.github.json` — movie, episode, and anime Search API queries and direct-source mappings.
 - `scripts/validate-package.mjs` — validates the complete static package contract.
 - `scripts/check-no-secrets.mjs` — rejects tokenized AIOStreams URLs and embedded credentials.
 - `scripts/smoke-live.mjs` — read-only smoke test for Midnight's live nightly endpoints.

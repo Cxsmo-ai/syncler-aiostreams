@@ -7,8 +7,8 @@ import { fileURLToPath } from "node:url";
 const root = dirname(dirname(fileURLToPath(import.meta.url)));
 const readJson = (name) => JSON.parse(readFileSync(join(root, name), "utf8"));
 const vendor = readJson("vendor.json");
-const manifest = readJson("manifest.json");
-const provider = readJson("express.json").aiostreams_direct;
+const manifest = readJson("manifest.github.json");
+const provider = readJson("express.github.json").aiostreams_github_direct_v2;
 
 function interpolate(template, values) {
   return Object.entries(values).reduce(
@@ -38,9 +38,10 @@ function mapResult(format, result) {
 }
 
 test("vendor installs the canonical manifest", () => {
-  const expected = "https://raw.githubusercontent.com/Cxsmo-ai/syncler-aiostreams/main/manifest.json";
+  const expected = "https://raw.githubusercontent.com/Cxsmo-ai/syncler-aiostreams/main/manifest.github.json";
   assert.equal(vendor.packages.length, 1);
-  assert.equal(vendor.packages[0].name, "AIOStreams Nightly (Direct)");
+  assert.equal(vendor.version, 3);
+  assert.equal(vendor.packages[0].name, "AIOStreams Nightly (GitHub Direct v2)");
   assert.equal(vendor.packages[0].enabled, true);
   assert.equal(vendor.packages[0].manifest, expected);
   assert.deepEqual(vendor.defaults.packages, [expected]);
@@ -49,6 +50,14 @@ test("vendor installs the canonical manifest", () => {
 test("authenticated requests never use a third-party cache server", () => {
   assert.deepEqual(vendor.cacheServers, []);
   assert.equal("cacheServer" in vendor.defaults, false);
+});
+
+test("fresh GitHub package identity cannot collide with stale installs", () => {
+  assert.equal(manifest.id, "com.cxsmo.syncler.aiostreams.github.direct.v2");
+  assert.equal(
+    manifest.url,
+    "https://raw.githubusercontent.com/Cxsmo-ai/syncler-aiostreams/main/express.github.json",
+  );
 });
 
 test("managed account injects Basic auth only into Midnight nightly", () => {
