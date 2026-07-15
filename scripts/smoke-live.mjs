@@ -3,8 +3,8 @@ import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const root = dirname(dirname(fileURLToPath(import.meta.url)));
-const express = JSON.parse(readFileSync(join(root, "express.json"), "utf8"));
-const base = express.aiostreams_direct.base_url;
+const express = JSON.parse(readFileSync(join(root, "express.github.json"), "utf8"));
+const base = express.aiostreams_github_direct_v2.base_url;
 
 function assert(condition, message) {
   if (!condition) throw new Error(message);

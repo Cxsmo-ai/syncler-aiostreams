@@ -1,21 +1,21 @@
 {
   "name": "AIOStreams for Syncler",
   "description": "GitHub-only Syncler Express package for Midnight's AIOStreams Nightly",
-  "version": 2,
+  "version": 3,
   "website": "https://github.com/Cxsmo-ai/syncler-aiostreams",
   "tutorial": "https://github.com/Cxsmo-ai/syncler-aiostreams#install",
   "support": "https://github.com/Cxsmo-ai/syncler-aiostreams/issues",
   "packages": [
     {
-      "name": "AIOStreams Nightly (Direct)",
-      "manifest": "https://raw.githubusercontent.com/Cxsmo-ai/syncler-aiostreams/main/manifest.json",
-      "description": "AIOStreams direct streams with Syncler-managed account authentication",
+      "name": "AIOStreams Nightly (GitHub Direct v2)",
+      "manifest": "https://raw.githubusercontent.com/Cxsmo-ai/syncler-aiostreams/main/manifest.github.json",
+      "description": "Fresh GitHub-only AIOStreams direct package with Syncler-managed account authentication",
       "enabled": true
     }
   ],
   "defaults": {
     "packages": [
-      "https://raw.githubusercontent.com/Cxsmo-ai/syncler-aiostreams/main/manifest.json"
+      "https://raw.githubusercontent.com/Cxsmo-ai/syncler-aiostreams/main/manifest.github.json"
     ]
   },
   "cacheServers": []

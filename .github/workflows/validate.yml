@@ -43,6 +43,6 @@ jobs:
           name: syncler-aiostreams-package-json
           path: |
             vendor.json
-            manifest.json
-            express.json
+            manifest.github.json
+            express.github.json
           if-no-files-found: error

@@ -1,6 +1,6 @@
 {
-  "aiostreams_direct": {
-    "name": "AIOStreams Nightly (Direct)",
+  "aiostreams_github_direct_v2": {
+    "name": "AIOStreams Nightly (GitHub Direct v2)",
     "enabled": true,
     "languages": [
       "en"
@@ -15,11 +15,11 @@
     },
     "episode": {
       "query": "/api/v1/search?type=series&id={showImdbId}:{season}:{episode}&requiredFields=url&requiredFields=filename",
-      "keywords": "{showImdbId}"
+      "keywords": "{showImdbId}:{season}:{episode}"
     },
     "anime": {
       "query": "/api/v1/search?type=series&id={showImdbId}:{season}:{episode}&requiredFields=url&requiredFields=filename",
-      "keywords": "{showImdbId}"
+      "keywords": "{showImdbId}:{season}:{episode}"
     },
     "json_format": {
       "results": "data.results",
@@ -37,6 +37,9 @@
           ]
         }
       ]
+    },
+    "title_replacement": {
+      "\\n": " | "
     }
   }
 }
